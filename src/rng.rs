@@ -322,7 +322,7 @@ mod imp {
 pub(crate) fn fill_random_bytes(buf: &mut [u8]) {
     #[cfg(not(feature = "fast-rng"))]
     {
-        getrandom::getrandom(buf).unwrap_or_else(|err| {
+        getrandom::fill(buf).unwrap_or_else(|err| {
             // NB: getrandom::Error has no source; this is adequate display
             panic!("could not retrieve random bytes for node id: {}", err)
         });
